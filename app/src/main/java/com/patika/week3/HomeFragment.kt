@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
-        Log.v("PATIKADEV","onDetach called.")
+        println("PATIKADEV onDetach called.")
     }
 
 
