@@ -35,42 +35,42 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.v("PATIKADEV","onViewCreated called.")
+        println("PATIKADEV onViewCreated called.")
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        Log.v("PATIKADEV","onViewStateRestored called.")
+        println("PATIKADEV onViewStateRestored called.")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.v("PATIKADEV","onStart called.")
+        println("PATIKADEV onStart called.")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.v("PATIKADEV","onResume called.")
+        println("PATIKADEV onResume called.")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.v("PATIKADEV","onPause called.")
+        println("PATIKADEV onPause called.")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.v("PATIKADEV","onStop called.")
+        println("PATIKADE onStop called.")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.v("PATIKADEV","onSaveInstanceState called.")
+        println("PATIKADEV onSaveInstanceState called.")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.v("PATIKADEV","onDestroyView called.")
+        println("PATIKADEV onDestroyView called.")
     }
 
     override fun onDestroy() {
