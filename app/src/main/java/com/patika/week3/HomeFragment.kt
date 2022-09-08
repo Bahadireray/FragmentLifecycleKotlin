@@ -1,45 +1,68 @@
 package com.patika.week3
 
+
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-
+import com.patika.week3.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
-
+    private var _binding: FragmentHomeBinding? = null
+    lateinit var sharedPreferences: SharedPreferences
+    private val binding get() = _binding!!
+    var number = 0
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Log.v("PATIKADEV","onAttach called.")
+        Log.v("PATIKADEV", "onAttach called.")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.v("PATIKADEV","onCreate called.")
+
+        sharedPreferences =
+            activity?.getSharedPreferences("com.patika.week3", Context.MODE_PRIVATE)!!
+        Log.v("PATIKADEV", "onCreate called.")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.v("PATIKADEV","onCreateView called.")
-        return inflater.inflate(R.layout.fragment_home,
-            container,
-            false
-        )
-
+        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnPlus.setOnClickListener { plus(view) }
+        binding.reset.setOnClickListener { reset(view) }
         println("PATIKADEV onViewCreated called.")
+    }
+
+    fun plus(view: View) {
+        number += 1
+        binding.textResult.text = number.toString()
+    }
+
+    fun reset(view: View) {
+        binding.textResult.text = "0"
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
+        val numberPrefences = sharedPreferences.getInt("number", -1)
+        if (numberPrefences == -1) {
+            binding.textResult.text = "0"
+        } else {
+            binding.textResult.text = numberPrefences.toString()
+        }
         println("PATIKADEV onViewStateRestored called.")
     }
 
@@ -65,6 +88,7 @@ class HomeFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        sharedPreferences.edit().putInt("number", number).apply()
         println("PATIKADEV onSaveInstanceState called.")
     }
 
@@ -75,14 +99,13 @@ class HomeFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.v("PATIKADEV","onDestroy called.")
+        Log.v("PATIKADEV", "onDestroy called.")
     }
 
     override fun onDetach() {
         super.onDetach()
-        println("PATIKADEV onDetach called.")
+        Log.v("PATIKADEV", "onDetach called.")
     }
-
 
 
 }
