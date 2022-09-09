@@ -4,7 +4,6 @@ package com.patika.week3
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ class HomeFragment : Fragment() {
     var number: Int? = 0
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Log.v("PATIKADEV", "onAttach called.")
+        println("FragmentLifecycle onAttach called.")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +25,7 @@ class HomeFragment : Fragment() {
 
         sharedPreferences =
             activity?.getSharedPreferences("com.patika.week3", Context.MODE_PRIVATE)!!
-        Log.v("PATIKADEV", "onCreate called.")
+        println("FragmentLifecycle onCreate called.")
     }
 
     override fun onCreateView(
@@ -44,7 +43,7 @@ class HomeFragment : Fragment() {
         number = numberPrefences
         binding.btnPlus.setOnClickListener { plus(view) }
         binding.reset.setOnClickListener { reset(view) }
-        println("PATIKADEV onViewCreated called.")
+        println("FragmentLifecycle onViewCreated called.")
     }
 
     fun plus(view: View) {
@@ -67,22 +66,22 @@ class HomeFragment : Fragment() {
         } else {
             binding.textResult.text = numberPrefences.toString()
         }
-        println("PATIKADEV onViewStateRestored called.")
+        println("FragmentLifecycle onViewStateRestored called.")
     }
 
     override fun onStart() {
         super.onStart()
-        println("PATIKADEV onStart called.")
+        println("FragmentLifecycle onStart called.")
     }
 
     override fun onResume() {
         super.onResume()
-        println("PATIKADEV onResume called.")
+        println("FragmentLifecycle onResume called.")
     }
 
     override fun onPause() {
         super.onPause()
-        println("PATIKADEV onPause called.")
+        println("FragmentLifecycle onPause called.")
     }
 
     override fun onStop() {
@@ -93,22 +92,22 @@ class HomeFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         number?.let { sharedPreferences.edit().putInt("number", it).apply() }
-        println("PATIKADEV onSaveInstanceState called.")
+        println("FragmentLifecycle onSaveInstanceState called.")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        println("PATIKADEV onDestroyView called.")
+        println("FragmentLifecycle onDestroyView called.")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.v("PATIKADEV", "onDestroy called.")
+        println("FragmentLifecycle onDestroy called.")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Log.v("PATIKADEV", "onDetach called.")
+        println("FragmentLifecycle onDetach called.")
     }
 
 
