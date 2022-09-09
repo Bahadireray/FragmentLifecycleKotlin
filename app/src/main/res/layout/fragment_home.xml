@@ -10,13 +10,17 @@
 
     <TextView
         android:id="@+id/textResult"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="167dp"
         android:layout_marginTop="160dp"
+        android:background="#FAFAFA"
+        android:foregroundGravity="center"
+        android:gravity="center"
         android:scrollbarSize="15dp"
-        android:text="Result"
-        android:textSize="20sp"
+        android:textColor="#090606"
+        android:textColorHint="@color/black"
+        android:textSize="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

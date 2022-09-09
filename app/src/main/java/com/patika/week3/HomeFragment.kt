@@ -15,7 +15,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     lateinit var sharedPreferences: SharedPreferences
     private val binding get() = _binding!!
-    var number = 0
+    var number: Int? = 0
     override fun onAttach(context: Context) {
         super.onAttach(context)
         Log.v("PATIKADEV", "onAttach called.")
@@ -40,19 +40,23 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val numberPrefences = sharedPreferences.getInt("number", -1)
+        number = numberPrefences
         binding.btnPlus.setOnClickListener { plus(view) }
         binding.reset.setOnClickListener { reset(view) }
         println("PATIKADEV onViewCreated called.")
     }
 
     fun plus(view: View) {
-        number += 1
+        number = number?.plus(1)
         binding.textResult.text = number.toString()
     }
 
     fun reset(view: View) {
-        binding.textResult.text = "0"
+
+        number = 0
+        number?.let { sharedPreferences.edit().putInt("number", it).apply() }
+        binding.textResult.text = 0.toString()
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -88,7 +92,7 @@ class HomeFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        sharedPreferences.edit().putInt("number", number).apply()
+        number?.let { sharedPreferences.edit().putInt("number", it).apply() }
         println("PATIKADEV onSaveInstanceState called.")
     }
 
